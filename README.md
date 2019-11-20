@@ -12,9 +12,9 @@ junit、jacoco、maven
 
 2. 随后你会发现在`/target/site/jacoco`目录下有一个产生了一个名字为`index.html`的文件（至于为什么会产生，请查看pom.xml配置），在浏览器打开这个文件，你会看到下图：
 ![image](https://github.com/2019NJUSAT/White-Box-Testing-/blob/master/IMG/image-20191115210656311.png)
-  
 
-  
+
+
 
 以  Method3为例，在HelloWorldTest中仅对Method3进行了两次测试，导致Method3的语句覆盖率和分支覆盖率均未达到100%，如下所示：
 
@@ -28,3 +28,11 @@ junit、jacoco、maven
 ## 提交方式
 
 将github链接分享给助教，在README里截图最后的html报告
+
+
+
+------------------------------------------------------------------------分割线--------------------------------------------------------------------------
+
+## 实验报告
+
+![](https://github.com/KSDeng/White-Box-Testing-/blob/master/IMG/result.PNG?raw=true)
