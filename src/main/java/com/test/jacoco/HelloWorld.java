@@ -1,6 +1,6 @@
 package com.test.jacoco;
 
-import javax.imageio.event.IIOReadWarningListener;
+import java.util.*;
 
 
 public class HelloWorld {
@@ -40,17 +40,31 @@ public class HelloWorld {
     	return 0;
     }
     public boolean bug(int a) {
-    	if(a == 5) return true;
-    	return false;
-    }
-    
+		return a == 5;
+	}
     
     public boolean isTriangle(int a, int b, int c) {
     	/**
     	 * TODO: You need to complete this method to determine whether  a
     	 * triangle is formed or not when given the input edge a, b and c.
     	 */
-    	return true;
+		return a > 0 && b > 0 && c > 0 &&
+				(a + b > c) &&
+				(a + c > b) &&
+				(b + c > a);
+    }
+
+    private boolean ifValidDay(int month, int day, boolean bigYear){
+        if(month <= 0 || month > 12 || day <= 0 || day > 31){
+            return false;
+        }
+        if((month == 4 || month == 6 || month == 9 || month == 11) && day > 30){
+            return false;
+        }
+        if(!bigYear && month == 2 && day > 28){
+            return false;
+        }
+        return true;
     }
     public boolean isBirthday(int year, int month, int day) {
     	/**
@@ -58,8 +72,29 @@ public class HelloWorld {
     	 * legitimate date of birth between 1990/01/01 and 2019/10/01 is 
     	 * formed or not when given the input year, month and day.
     	 */
-    	return true;
-    	
+
+		Set<Integer> bigYear = new HashSet<Integer>();
+		for(int i = 1990; i < 2019; i++){
+			if(((i % 100 != 0) && (i % 4 == 0)) || ((i % 400 == 0))){
+				bigYear.add(i);
+			}
+		}
+
+		if(year < 1990 || year > 2019){
+		    return false;
+        }
+		if(year != 2019){
+		    return ifValidDay(month, day, bigYear.contains(year));
+        }else{
+		    if (month > 10){
+		        return false;
+            }else if(month == 10){
+		        return day == 1;
+            }else{
+		        return ifValidDay(month, day, false);
+            }
+        }
+
     }
     public Double miniCalculator(double a, double b, char op) {
     	/**
@@ -68,6 +103,13 @@ public class HelloWorld {
     	 * operation: "+","-","*","/". 
     	 */
     	double result = 0.0;
+    	switch (op){
+            case '+': result = a + b; break;
+            case '-': result = a - b; break;
+            case '*': result = a * b; break;
+            case '/': result = a / b; break;
+            default: break;
+        }
     	return result;
     }
     
